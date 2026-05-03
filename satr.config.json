@@ -1,0 +1,19 @@
+{
+  "locale": "ar-SA",
+  "rules": [
+    "secrets",
+    "pii",
+    "pii-ar-sa",
+    "business-sensitive"
+  ],
+  "action": "report",
+  "severityThreshold": "medium",
+  "ignore": [
+    "node_modules",
+    ".git",
+    "dist",
+    "build",
+    ".next",
+    "coverage"
+  ]
+}

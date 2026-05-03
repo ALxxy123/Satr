@@ -1,0 +1,17 @@
+node_modules
+.git
+dist
+build
+.next
+coverage
+.cache
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.pdf
+*.docx
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
