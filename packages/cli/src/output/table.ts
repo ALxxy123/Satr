@@ -1,5 +1,5 @@
 import path from "node:path";
-import type { DirectoryScanResult } from "@satr/node";
+import type { DirectoryScanResult } from "@satr-labs/node";
 
 function pad(value: string, length: number): string {
   return value.length >= length ? value : `${value}${" ".repeat(length - value.length)}`;

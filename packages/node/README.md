@@ -1,4 +1,4 @@
-# @satr/node
+# @satr-labs/node
 
 Node.js file and directory scanning utilities for Satr.
 

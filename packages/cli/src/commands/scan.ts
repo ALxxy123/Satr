@@ -1,8 +1,8 @@
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
-import type { SatrAction, SatrConfig } from "@satr/core";
-import { scanDirectory, type DirectoryScanResult, type ScanDirectoryOptions } from "@satr/node";
-import { resolveBuiltInRules } from "@satr/rules";
+import type { SatrAction, SatrConfig } from "@satr-labs/core";
+import { scanDirectory, type DirectoryScanResult, type ScanDirectoryOptions } from "@satr-labs/node";
+import { resolveBuiltInRules } from "@satr-labs/rules";
 import { formatJsonReport } from "../output/json";
 import { formatTableReport } from "../output/table";
 

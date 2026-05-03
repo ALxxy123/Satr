@@ -1,6 +1,6 @@
 import { readFile, stat } from "node:fs/promises";
-import { scanText } from "@satr/core";
-import type { ScanOptions, ScanResult } from "@satr/core";
+import { scanText } from "@satr-labs/core";
+import type { ScanOptions, ScanResult } from "@satr-labs/core";
 import {
   DEFAULT_TEXT_EXTENSIONS,
   isProbablyBinaryFile,

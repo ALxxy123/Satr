@@ -1,7 +1,7 @@
 import { readdir, stat } from "node:fs/promises";
 import path from "node:path";
-import { calculateRiskScore } from "@satr/core";
-import type { ScanOptions, SatrIssue } from "@satr/core";
+import { calculateRiskScore } from "@satr-labs/core";
+import type { ScanOptions, SatrIssue } from "@satr-labs/core";
 import { DEFAULT_IGNORE_PATTERNS, readIgnoreFile, shouldIgnorePath } from "./ignore";
 import { scanFile, type FileScanResult, type ScanFileOptions } from "./scanFile";
 

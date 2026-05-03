@@ -1,4 +1,4 @@
-# @satr/cli
+# @satr-labs/cli
 
 Command-line interface for Satr.
 

@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { scanText } from "@satr/core";
+import { scanText } from "@satr-labs/core";
 import { builtInRules, resolveBuiltInRules } from "../src";
 
-describe("@satr/rules", () => {
+describe("@satr-labs/rules", () => {
   it("exports built-in rules", () => {
     expect(builtInRules.length).toBeGreaterThan(10);
     expect(builtInRules.some((rule) => rule.id === "secret.openai_api_key")).toBe(true);

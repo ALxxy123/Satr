@@ -333,7 +333,7 @@ satr/
 
 ## 14. Package Design
 
-### 14.1 `@satr/core`
+### 14.1 `@satr-labs/core`
 
 The core package contains the pure scanning engine.
 
@@ -371,7 +371,7 @@ export type {
 };
 ```
 
-### 14.2 `@satr/node`
+### 14.2 `@satr-labs/node`
 
 Node-specific package.
 
@@ -392,7 +392,7 @@ export { scanFile } from "./scanFile";
 export { scanDirectory } from "./scanDirectory";
 ```
 
-### 14.3 `@satr/cli`
+### 14.3 `@satr-labs/cli`
 
 Command-line interface.
 
@@ -405,7 +405,7 @@ satr rules
 satr explain
 ```
 
-### 14.4 `@satr/rules`
+### 14.4 `@satr-labs/rules`
 
 Built-in rules package.
 
@@ -429,7 +429,7 @@ In v0.1, keep the number of rules limited but accurate.
 ### 15.1 `scanText`
 
 ```ts
-import { scanText } from "@satr/core";
+import { scanText } from "@satr-labs/core";
 
 const result = scanText("My API key is sk-xxxx", {
   rules: ["secrets", "pii"],
@@ -517,7 +517,7 @@ Example output:
 ### 15.3 `scanFile`
 
 ```ts
-import { scanFile } from "@satr/node";
+import { scanFile } from "@satr-labs/node";
 
 const result = await scanFile("./logs/app.log", {
   rules: ["secrets", "pii"],
@@ -528,7 +528,7 @@ const result = await scanFile("./logs/app.log", {
 ### 15.4 `scanDirectory`
 
 ```ts
-import { scanDirectory } from "@satr/node";
+import { scanDirectory } from "@satr-labs/node";
 
 const result = await scanDirectory("./src", {
   rules: ["secrets", "pii"],
@@ -1223,7 +1223,7 @@ But `scanText` should not throw by default unless explicitly configured.
 
 ```ts
 import express from "express";
-import { scanObject } from "@satr/core";
+import { scanObject } from "@satr-labs/core";
 
 const app = express();
 
@@ -1319,19 +1319,19 @@ Satr is a local-first AI data protection SDK for detecting, redacting, blocking,
 Installation:
 
 ```bash
-pnpm add @satr/core
+pnpm add @satr-labs/core
 ```
 
 CLI:
 
 ```bash
-pnpm add -g @satr/cli
+pnpm add -g @satr-labs/cli
 ```
 
 Quick start:
 
 ```ts
-import { scanText } from "@satr/core";
+import { scanText } from "@satr-labs/core";
 
 const result = scanText("My API key is sk-xxxx", {
   rules: ["secrets"],
@@ -1620,10 +1620,10 @@ Satr v0.1 is complete when:
 Packages:
 
 ```txt
-@satr/core
-@satr/node
-@satr/cli
-@satr/rules
+@satr-labs/core
+@satr-labs/node
+@satr-labs/cli
+@satr-labs/rules
 ```
 
 CLI:
@@ -1832,13 +1832,13 @@ Suggested dependencies:
 ### Install
 
 ```bash
-pnpm add @satr/core
+pnpm add @satr-labs/core
 ```
 
 ### Use in code
 
 ```ts
-import { scanText } from "@satr/core";
+import { scanText } from "@satr-labs/core";
 
 const prompt = `
 Please summarize this log:
@@ -1942,10 +1942,10 @@ Tech stack:
 - Changesets
 
 Packages:
-- @satr/core: pure scanner, rules, redaction, risk scoring, scanText, scanObject
-- @satr/node: scanFile, scanDirectory, ignore patterns, filesystem utilities
-- @satr/cli: satr init, satr scan, satr rules list, satr explain
-- @satr/rules: built-in rule packs
+- @satr-labs/core: pure scanner, rules, redaction, risk scoring, scanText, scanObject
+- @satr-labs/node: scanFile, scanDirectory, ignore patterns, filesystem utilities
+- @satr-labs/cli: satr init, satr scan, satr rules list, satr explain
+- @satr-labs/rules: built-in rule packs
 
 v0.1 features:
 - scanText
@@ -1977,7 +1977,7 @@ Built-in rules should detect:
 
 Core API example:
 
-import { scanText } from "@satr/core";
+import { scanText } from "@satr-labs/core";
 
 const result = scanText(prompt, {
   rules: ["secrets", "pii", "pii-ar-sa"],

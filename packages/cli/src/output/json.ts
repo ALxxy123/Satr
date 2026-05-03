@@ -1,5 +1,5 @@
 import path from "node:path";
-import type { DirectoryScanResult } from "@satr/node";
+import type { DirectoryScanResult } from "@satr-labs/node";
 
 function relativeFilePath(filePath: string | undefined): string | undefined {
   if (!filePath) {

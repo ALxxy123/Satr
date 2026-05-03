@@ -1,5 +1,5 @@
 {
-  "name": "@satr/cli",
+  "name": "@satr-labs/cli",
   "version": "0.1.0",
   "description": "CLI for Satr.",
   "type": "module",
@@ -13,12 +13,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ahmadmubaraki/satr.git",
+    "url": "git+https://github.com/ALxxy123/Satr.git",
     "directory": "packages/cli"
   },
-  "homepage": "https://github.com/ahmadmubaraki/satr#readme",
+  "homepage": "https://github.com/ALxxy123/Satr#readme",
   "bugs": {
-    "url": "https://github.com/ahmadmubaraki/satr/issues"
+    "url": "https://github.com/ALxxy123/Satr/issues"
   },
   "files": [
     "dist",
@@ -48,9 +48,9 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@satr/core": "workspace:*",
-    "@satr/node": "workspace:*",
-    "@satr/rules": "workspace:*",
+    "@satr-labs/core": "workspace:*",
+    "@satr-labs/node": "workspace:*",
+    "@satr-labs/rules": "workspace:*",
     "commander": "^12.0.0"
   },
   "devDependencies": {}

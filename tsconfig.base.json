@@ -16,9 +16,9 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@satr/core": ["packages/core/src/index.ts"],
-      "@satr/node": ["packages/node/src/index.ts"],
-      "@satr/rules": ["packages/rules/src/index.ts"]
+      "@satr-labs/core": ["packages/core/src/index.ts"],
+      "@satr-labs/node": ["packages/node/src/index.ts"],
+      "@satr-labs/rules": ["packages/rules/src/index.ts"]
     }
   }
 }

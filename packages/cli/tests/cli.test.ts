@@ -10,7 +10,7 @@ async function tempDir(): Promise<string> {
   return mkdtemp(path.join(os.tmpdir(), "satr-cli-"));
 }
 
-describe("@satr/cli", () => {
+describe("@satr-labs/cli", () => {
   it("initializes config files", async () => {
     const directory = await tempDir();
     const messages = await initProject(directory);

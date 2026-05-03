@@ -2,14 +2,14 @@ import { mkdtemp, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { resolveBuiltInRules } from "@satr/rules";
+import { resolveBuiltInRules } from "@satr-labs/rules";
 import { scanDirectory, scanFile } from "../src";
 
 async function tempDir(): Promise<string> {
   return mkdtemp(path.join(os.tmpdir(), "satr-node-"));
 }
 
-describe("@satr/node", () => {
+describe("@satr-labs/node", () => {
   it("scans a supported text file", async () => {
     const directory = await tempDir();
     const filePath = path.join(directory, "sample.txt");

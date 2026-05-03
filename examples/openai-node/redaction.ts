@@ -1,5 +1,5 @@
-import { scanText } from "@satr/core";
-import { builtInRules } from "@satr/rules";
+import { scanText } from "@satr-labs/core";
+import { builtInRules } from "@satr-labs/rules";
 
 const prompt = `
 Please summarize this debug note before I send it to an AI provider.

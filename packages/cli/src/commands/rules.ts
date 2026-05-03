@@ -1,5 +1,5 @@
-import type { RuleType, SatrRule } from "@satr/core";
-import { builtInRules, getBuiltInRule } from "@satr/rules";
+import type { RuleType, SatrRule } from "@satr-labs/core";
+import { builtInRules, getBuiltInRule } from "@satr-labs/rules";
 
 type ListRulesOptions = {
   type?: RuleType;

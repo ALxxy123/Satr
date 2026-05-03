@@ -1,5 +1,5 @@
 {
-  "name": "@satr/core",
+  "name": "@satr-labs/core",
   "version": "0.1.0",
   "description": "Core local-first sensitive data scanner for Satr.",
   "type": "module",
@@ -13,12 +13,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ahmadmubaraki/satr.git",
+    "url": "git+https://github.com/ALxxy123/Satr.git",
     "directory": "packages/core"
   },
-  "homepage": "https://github.com/ahmadmubaraki/satr#readme",
+  "homepage": "https://github.com/ALxxy123/Satr#readme",
   "bugs": {
-    "url": "https://github.com/ahmadmubaraki/satr/issues"
+    "url": "https://github.com/ALxxy123/Satr/issues"
   },
   "files": [
     "dist",

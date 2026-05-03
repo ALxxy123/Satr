@@ -18,19 +18,19 @@ Satr is a developer guardrail, not a complete compliance solution.
 ## Install
 
 ```bash
-pnpm add @satr/core @satr/rules
+pnpm add @satr-labs/core @satr-labs/rules
 ```
 
 For file and directory scanning:
 
 ```bash
-pnpm add @satr/node
+pnpm add @satr-labs/node
 ```
 
 For the CLI:
 
 ```bash
-pnpm add -g @satr/cli
+pnpm add -g @satr-labs/cli
 ```
 
 Satr v0.1 is ESM-only and supports Node.js 18 or newer.
@@ -38,8 +38,8 @@ Satr v0.1 is ESM-only and supports Node.js 18 or newer.
 ## Quick Start
 
 ```ts
-import { scanText } from "@satr/core";
-import { builtInRules } from "@satr/rules";
+import { scanText } from "@satr-labs/core";
+import { builtInRules } from "@satr-labs/rules";
 
 const result = scanText("My API key is sk-example1234567890abcdef", {
   rules: ["secrets"],
@@ -59,8 +59,8 @@ My API key is [REDACTED:OPENAI_API_KEY]
 You can also pass rule objects directly:
 
 ```ts
-import { scanText } from "@satr/core";
-import { builtInRules } from "@satr/rules";
+import { scanText } from "@satr-labs/core";
+import { builtInRules } from "@satr-labs/rules";
 
 const result = scanText("Email: ahmad@example.com", {
   rules: builtInRules,
@@ -87,8 +87,8 @@ if (!scan.safe) {
 ### Scan Objects
 
 ```ts
-import { scanObject } from "@satr/core";
-import { builtInRules } from "@satr/rules";
+import { scanObject } from "@satr-labs/core";
+import { builtInRules } from "@satr-labs/rules";
 
 const scan = scanObject(
   {
@@ -110,8 +110,8 @@ console.log(scan.output);
 ### Scan Files
 
 ```ts
-import { scanFile } from "@satr/node";
-import { resolveBuiltInRules } from "@satr/rules";
+import { scanFile } from "@satr-labs/node";
+import { resolveBuiltInRules } from "@satr-labs/rules";
 
 const result = await scanFile("./logs/app.txt", {
   rules: resolveBuiltInRules(["secrets", "pii"]),

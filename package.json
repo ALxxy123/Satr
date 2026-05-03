@@ -7,11 +7,11 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ahmadmubaraki/satr.git"
+    "url": "git+https://github.com/ALxxy123/Satr.git"
   },
-  "homepage": "https://github.com/ahmadmubaraki/satr#readme",
+  "homepage": "https://github.com/ALxxy123/Satr#readme",
   "bugs": {
-    "url": "https://github.com/ahmadmubaraki/satr/issues"
+    "url": "https://github.com/ALxxy123/Satr/issues"
   },
   "packageManager": "pnpm@10.33.2",
   "scripts": {
@@ -28,7 +28,6 @@
     "eslint": "^9.0.0",
     "prettier": "^3.0.0",
     "tsup": "^8.0.0",
-    "tsx": "^4.21.0",
     "typescript": "^5.0.0",
     "vitest": "^2.0.0"
   }

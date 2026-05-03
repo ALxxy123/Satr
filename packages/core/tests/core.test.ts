@@ -38,7 +38,7 @@ const tokenRule = defineRule({
   tags: ["secret"],
 });
 
-describe("@satr/core", () => {
+describe("@satr-labs/core", () => {
   it("detects and redacts text matches", () => {
     const result = scanText("Email ahmad@example.com before sharing.", {
       rules: [emailRule],

@@ -1,4 +1,4 @@
-import type { RuleType, SatrRule } from "@satr/core";
+import type { RuleType, SatrRule } from "@satr-labs/core";
 import { businessSensitiveRules } from "./business-sensitive";
 import { piiArSaRules } from "./pii-ar-sa";
 import { piiRules } from "./pii";

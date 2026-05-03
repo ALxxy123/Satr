@@ -1,5 +1,5 @@
-import { defineRule } from "@satr/core";
-import type { SatrRule } from "@satr/core";
+import { defineRule } from "@satr-labs/core";
+import type { SatrRule } from "@satr-labs/core";
 
 export const piiRules: SatrRule[] = [
   defineRule({

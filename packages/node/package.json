@@ -1,5 +1,5 @@
 {
-  "name": "@satr/node",
+  "name": "@satr-labs/node",
   "version": "0.1.0",
   "description": "Node.js utilities for Satr.",
   "type": "module",
@@ -13,12 +13,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ahmadmubaraki/satr.git",
+    "url": "git+https://github.com/ALxxy123/Satr.git",
     "directory": "packages/node"
   },
-  "homepage": "https://github.com/ahmadmubaraki/satr#readme",
+  "homepage": "https://github.com/ALxxy123/Satr#readme",
   "bugs": {
-    "url": "https://github.com/ahmadmubaraki/satr/issues"
+    "url": "https://github.com/ALxxy123/Satr/issues"
   },
   "files": [
     "dist",
@@ -45,7 +45,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@satr/core": "workspace:*"
+    "@satr-labs/core": "workspace:*"
   },
   "devDependencies": {}
 }
