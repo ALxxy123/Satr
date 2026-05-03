@@ -1,0 +1,51 @@
+{
+  "name": "@satr/rules",
+  "version": "0.1.0",
+  "description": "Built-in detection rules for Satr.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "dlp",
+    "privacy",
+    "redaction",
+    "security"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmadmubaraki/satr.git",
+    "directory": "packages/rules"
+  },
+  "homepage": "https://github.com/ahmadmubaraki/satr#readme",
+  "bugs": {
+    "url": "https://github.com/ahmadmubaraki/satr/issues"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --clean",
+    "dev": "tsup src/index.ts --format esm --dts --watch",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@satr/core": "workspace:*"
+  },
+  "devDependencies": {}
+}
