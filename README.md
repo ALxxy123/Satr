@@ -1,33 +1,90 @@
-# Satr
+<p align="center">
+  <img src="./assets/logo.png" alt="Satr logo" width="140" />
+</p>
 
-Protect sensitive data before it reaches AI.
+<h1 align="center">Satr</h1>
 
-Satr is a local-first AI data protection SDK for detecting, redacting, blocking, and
-reporting sensitive data in prompts, files, logs, and API payloads before they are sent
-to AI providers or external systems.
+<p align="center">
+  <strong>Protect sensitive data before it reaches AI.</strong>
+</p>
 
-## Why It Exists
+<p align="center">
+  Satr is a local-first AI data protection SDK and CLI for detecting, redacting, blocking,
+  and reporting sensitive data in prompts, files, logs, objects, and API payloads before
+  they are sent to AI providers or external systems.
+</p>
 
-AI features often send prompts, logs, request payloads, and debug files outside the
-application boundary. Satr gives developers a deterministic guardrail that runs locally
-first, so common secrets, PII, Saudi PII, and business-sensitive terms can be caught
-before data leaves the machine or process.
+<p align="center">
+  <img src="https://img.shields.io/badge/status-beta-0EA5A4" alt="Beta status" />
+  <img src="https://img.shields.io/badge/license-MIT-1B2330" alt="MIT license" />
+  <img src="https://img.shields.io/badge/TypeScript-ready-3178C6" alt="TypeScript ready" />
+  <img src="https://img.shields.io/badge/local--first-yes-0EA5A4" alt="Local-first" />
+  <img src="https://img.shields.io/badge/deterministic-rules-1B2330" alt="Deterministic rules" />
+</p>
 
-Satr is a developer guardrail, not a complete compliance solution.
+<p align="center">
+  <a href="https://www.npmjs.com/package/@satr-labs/core">
+    <img src="https://img.shields.io/npm/v/@satr-labs/core?label=%40satr-labs%2Fcore" alt="@satr-labs/core" />
+  </a>
+  <a href="https://www.npmjs.com/package/@satr-labs/rules">
+    <img src="https://img.shields.io/npm/v/@satr-labs/rules?label=%40satr-labs%2Frules" alt="@satr-labs/rules" />
+  </a>
+  <a href="https://www.npmjs.com/package/@satr-labs/node">
+    <img src="https://img.shields.io/npm/v/@satr-labs/node?label=%40satr-labs%2Fnode" alt="@satr-labs/node" />
+  </a>
+  <a href="https://www.npmjs.com/package/@satr-labs/cli">
+    <img src="https://img.shields.io/npm/v/@satr-labs/cli?label=%40satr-labs%2Fcli" alt="@satr-labs/cli" />
+  </a>
+</p>
+
+---
+
+## Why Satr?
+
+Modern AI-powered applications often send prompts, logs, request payloads, and support
+files outside the application boundary. That creates a simple but serious failure mode:
+secrets, personal data, customer information, or internal business context can reach AI
+providers or external systems unintentionally.
+
+Satr gives developers a deterministic, local-first guardrail that runs before data leaves
+the process. It helps detect, redact, block, and report sensitive information through a
+small TypeScript SDK and a practical CLI.
+
+Satr is intentionally focused. It is not an AI framework, not a SaaS product, and not a
+full enterprise DLP platform.
+
+> Satr is a developer guardrail, not a complete compliance solution.
+
+---
+
+## Features
+
+- **Local-first scanning** with no external network calls in the scanner
+- **Deterministic detection** using rules, regex, validators, and heuristics
+- **Built-in coverage** for secrets, general PII, Saudi PII, and business-sensitive context
+- **Multiple input types** for text, objects, files, and directories
+- **Flexible actions** for reporting, redaction, and blocking
+- **SDK and CLI** for application code, local workflows, and CI checks
+- **Config and ignore support** through `satr.config.json` and `.satrignore`
+- **TypeScript-first API** with strict types and small package boundaries
+
+---
 
 ## Install
+
+### Core SDK and Built-in Rules
 
 ```bash
 pnpm add @satr-labs/core @satr-labs/rules
 ```
 
-For file and directory scanning:
+### File and Directory Scanning
 
 ```bash
 pnpm add @satr-labs/node
 ```
 
-For the CLI:
+### CLI
 
 ```bash
 pnpm add -g @satr-labs/cli
@@ -35,14 +92,16 @@ pnpm add -g @satr-labs/cli
 
 Satr v0.1 is ESM-only and supports Node.js 18 or newer.
 
+---
+
 ## Quick Start
 
 ```ts
 import { scanText } from "@satr-labs/core";
 import { builtInRules } from "@satr-labs/rules";
 
-const result = scanText("My API key is sk-example1234567890abcdef", {
-  rules: ["secrets"],
+const result = scanText("Email ahmad@example.com", {
+  rules: ["pii"],
   ruleRegistry: builtInRules,
   action: "redact",
 });
@@ -50,10 +109,10 @@ const result = scanText("My API key is sk-example1234567890abcdef", {
 console.log(result.output);
 ```
 
-Output:
+Expected output:
 
 ```txt
-My API key is [REDACTED:OPENAI_API_KEY]
+Email [REDACTED:EMAIL]
 ```
 
 You can also pass rule objects directly:
@@ -62,26 +121,40 @@ You can also pass rule objects directly:
 import { scanText } from "@satr-labs/core";
 import { builtInRules } from "@satr-labs/rules";
 
-const result = scanText("Email: ahmad@example.com", {
+const result = scanText("My API key is sk-example1234567890abcdef", {
   rules: builtInRules,
   action: "redact",
 });
+
+console.log(result.output);
 ```
+
+---
 
 ## SDK Usage
 
 ### Scan Text
 
 ```ts
-const scan = scanText(prompt, {
-  rules: ["secrets", "pii", "pii-ar-sa"],
+import { scanText } from "@satr-labs/core";
+import { builtInRules } from "@satr-labs/rules";
+
+const prompt = `
+Please summarize this support note before I send it to an AI provider.
+Email ahmad@example.com
+`;
+
+const result = scanText(prompt, {
+  rules: ["pii"],
   ruleRegistry: builtInRules,
   action: "redact",
 });
 
-if (!scan.safe) {
-  console.log(scan.issues);
+if (!result.safe) {
+  console.log(result.issues);
 }
+
+console.log(result.output);
 ```
 
 ### Scan Objects
@@ -90,7 +163,7 @@ if (!scan.safe) {
 import { scanObject } from "@satr-labs/core";
 import { builtInRules } from "@satr-labs/rules";
 
-const scan = scanObject(
+const result = scanObject(
   {
     user: {
       email: "ahmad@example.com",
@@ -104,7 +177,18 @@ const scan = scanObject(
   },
 );
 
-console.log(scan.output);
+console.log(result.output);
+```
+
+Example output:
+
+```ts
+{
+  user: {
+    email: "[REDACTED:EMAIL]",
+    phone: "[REDACTED:SAUDI_MOBILE]",
+  },
+}
 ```
 
 ### Scan Files
@@ -117,11 +201,15 @@ const result = await scanFile("./logs/app.txt", {
   rules: resolveBuiltInRules(["secrets", "pii"]),
   action: "report",
 });
+
+console.log(result.issues);
 ```
 
-## CLI
+---
 
-Initialize config:
+## CLI Usage
+
+Initialize a Satr config:
 
 ```bash
 satr init
@@ -133,98 +221,169 @@ Scan a file or directory:
 satr scan .
 satr scan ./src --rules secrets,pii
 satr scan ./logs/app.txt --action redact
-satr scan . --action block
 satr scan . --format json
+```
+
+Inspect built-in rules:
+
+```bash
+satr rules list
+satr rules list --tag openai
+satr explain secret.openai_api_key
 ```
 
 `satr scan` exits with code `1` when issues are found, which makes it suitable for CI
 and pre-release checks.
 
-In v0.1, the CLI reports scan findings. It does not rewrite files or save redacted
-copies; use the SDK output when you need redacted text or objects in application code.
+> In v0.1, `satr scan --action redact` reports findings and redaction metadata, but it
+> does **not** rewrite files on disk. Use the SDK when you need redacted text or objects
+> in application code.
 
-Inspect rules:
-
-```bash
-satr rules list
-satr rules list --type secret
-satr rules list --tag openai
-satr explain secret.openai_api_key
-```
-
-## Config
-
-`satr init` creates:
-
-```json
-{
-  "locale": "ar-SA",
-  "rules": ["secrets", "pii", "pii-ar-sa", "business-sensitive"],
-  "action": "report",
-  "severityThreshold": "medium",
-  "ignore": ["node_modules", ".git", "dist", "build", ".next", "coverage"]
-}
-```
-
-Satr also reads `.satrignore` for directory scans.
+---
 
 ## Built-in Detections
 
-Satr v0.1 includes deterministic rules for:
+### Secrets
 
-- Secrets: OpenAI keys, Anthropic keys, GitHub tokens, AWS access key IDs, private key
-  blocks, bearer tokens, generic env secrets, and database URLs.
-- General PII: email addresses, IP addresses, token-bearing URLs, and broad phone
-  candidates.
-- Saudi PII: Saudi mobile numbers, Saudi IBANs, and national ID or iqama candidates.
-- Business-sensitive context: salary, payroll, contracts, invoices, employee/customer
-  data, bank account context, and confidential keywords in English and Arabic.
+- OpenAI API keys
+- Anthropic API keys
+- GitHub tokens
+- AWS access key IDs
+- Private key blocks
+- Bearer tokens
+- Generic `.env` secrets
+- Database URLs
 
-## Redaction
+### General PII
 
-Rules can redact with these deterministic strategies:
+- Email addresses
+- IP addresses
+- Token-bearing URLs
+- Broad phone candidates
 
-- `full`: replace the whole match with a placeholder.
-- `partial`: preserve configured leading/trailing characters.
-- `mask`: replace characters with `*`.
-- `hash`: replace with a stable local hash token.
-- `remove`: remove the match.
+### Saudi PII
 
-Overlapping redactions are resolved by severity and match length so the highest-risk
-match wins.
+- Saudi mobile numbers
+- Saudi IBANs
+- Saudi national ID candidates
+- Iqama number candidates
 
-Hash redaction is deterministic but not intended to be cryptographic anonymization.
+### Business-sensitive Context
+
+English and Arabic keyword detection for:
+
+- Salary and payroll
+- Contracts and agreements
+- Invoices
+- Employee and customer data
+- Bank account context
+- Confidential content
+
+---
+
+## Redaction Strategies
+
+| Strategy  | Behavior                                             |
+| --------- | ---------------------------------------------------- |
+| `full`    | Replaces the entire match with a placeholder         |
+| `partial` | Preserves configured leading and trailing characters |
+| `mask`    | Replaces characters with `*`                         |
+| `hash`    | Replaces the value with a stable local hash token    |
+| `remove`  | Removes the value entirely                           |
+
+Example:
+
+```txt
+Input:  Email ahmad@example.com
+Output: Email [REDACTED:EMAIL]
+```
+
+Hash redaction is deterministic, but it is not intended to be cryptographic anonymization.
+
+---
 
 ## Security Model
 
-Satr protects against accidental exposure of secrets, PII, Saudi PII, business-sensitive
-terms, unsafe debug sharing, and sensitive file or payload submission before AI usage.
+Satr helps reduce accidental exposure of:
 
-Satr does not fully protect against malicious insiders, compromised machines, encrypted
-secrets, binary files, images, OCR content, PDFs, all possible PII formats, or legal
-compliance obligations by itself. The built-in rules are deterministic regex and
-heuristic checks, so false positives and false negatives are expected in v0.1.
+- Secrets in prompts and logs
+- PII in payloads and support files
+- Saudi PII in text and file-based workflows
+- Business-sensitive content before AI usage
+- Unsafe debug or support-file sharing
+- Sensitive request payloads sent to external systems
+
+Satr does **not** fully protect against:
+
+- Malicious insiders
+- Compromised machines
+- Encrypted or obfuscated secrets
+- Binary file inspection in a broad enterprise DLP sense
+- OCR or image-based extraction
+- Full PDF, DOCX, image, or spreadsheet scanning in v0.1
+- Every possible PII format or jurisdictional rule
+- Legal or compliance obligations on its own
+
+The built-in rules are deterministic regex and heuristic checks, so false positives and
+false negatives are expected in v0.1.
+
+> Satr is a developer guardrail, not a complete compliance solution.
+
+---
 
 ## v0.1 Scope
 
-Included:
+### Included
 
 - TypeScript core scanner
 - Built-in deterministic rules
 - Redaction and risk scoring
-- Object, file, and directory scanning
+- Text and object scanning
+- File and directory scanning
 - CLI with table and JSON output
-- JSON config and ignore file support
+- Config and ignore support
 - Focused tests and examples
 
-Not included in v0.1:
+### Not Included
 
 - Dashboard
 - SaaS platform
-- Auth or database
+- Authentication or database
 - LLM classifiers
-- Browser or VS Code extensions
+- Browser extension
+- VS Code extension
 - PDF, DOCX, image, OCR, or spreadsheet scanning
+
+---
+
+## Packages
+
+| Package            | Purpose                                                                           |
+| ------------------ | --------------------------------------------------------------------------------- |
+| `@satr-labs/core`  | Core scanner, types, redaction, risk scoring, and public SDK APIs                 |
+| `@satr-labs/rules` | Built-in rule packs for secrets, PII, Saudi PII, and business-sensitive detection |
+| `@satr-labs/node`  | Node.js utilities for scanning files and directories                              |
+| `@satr-labs/cli`   | Command-line interface for initialization, scanning, and rule inspection          |
+
+---
+
+## Development
+
+```bash
+pnpm install
+pnpm build
+pnpm test
+pnpm typecheck
+pnpm lint
+```
+
+Run the CLI locally after building:
+
+```bash
+node ./packages/cli/dist/index.js rules list
+```
+
+---
 
 ## License
 
